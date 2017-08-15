@@ -1,0 +1,19 @@
+page-faq {
+  .headline {
+    color: #e95600;
+    background: #e3e3e3;
+    border-radius: 9px;
+    font-size: 22px;
+    padding: 5px;
+  }
+
+  .answer {
+    display: none;
+  }
+
+  .answer.highlight {
+    display: block;
+  }
+
+  .question { font-weight: bold }
+}

@@ -1,0 +1,406 @@
+<!--
+  Generated template for the EditProfile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>edit-profile</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+    <div class="inner_form_top steps">
+        <ul>
+            <li (click)="step_edit(1)" [ngClass]="{'active': step == 1 }"><span
+                    class="fnumber profileSpan">1</span><span class="ftext"></span></li>
+            <li (click)="step_edit(2)" [ngClass]="{'active': step == 2 }"><span class="fnumber profileSpan">2</span>
+            </li>
+            <li (click)="step_edit(3)" [ngClass]="{'active': step == 3 }"><span class="fnumber profileSpan">3</span>
+            </li>
+        </ul>
+        <div class="clr"></div>
+    </div>
+
+    <!------------------------------ STEP ONE ---------------------------->
+
+    <ion-list *ngIf="step == 1">
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.username.errors && err.username.errors?.length != 0 }"
+                 class="placeholder">{{ form.form.username.label }}
+            </div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form.form.username.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err.username.errors }}</div>
+        </div>
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.email.children.first.errors  && err.email.children.first.errors?.length != 0 }"
+                 class="placeholder">{{ form.form.email.first.label }}
+            </div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form.form.email.first.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err.email.children.first.errors }}</div>
+        </div>
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.email.children.first.errors  && err.email.children.first.errors != 0 }"
+                 class="placeholder">{{ form.form.email.second.label }}
+            </div>
+            <ion-item>
+
+                <ion-input type="text" [(ngModel)]="form.form.email.second.value"></ion-input>
+            </ion-item>
+            <div class="err">{{err.email.children.second.errors}}</div>
+        </div>
+        <!--<ion-item>
+          <ion-label>Component</ion-label>
+          <select-alertless item-content [(ngModel)]="test">
+            <ion-option>First</ion-option>
+            <ion-option>Second</ion-option>
+            <ion-option>Third</ion-option>
+          </select-alertless>
+        </ion-item>-->
+        <div class="input select-alertless">
+            <div [ngClass]="{'yellow-bg':  err.zipCode.errors  && err.zipCode.errors != 0 }" class="placeholder">{{
+                form.form.region.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content (ionChange)="setSelected()" [(ngModel)]="form.form.region.value"
+                                  (ionChange)="festSelected('region')">
+                    <ion-option value="{{rs.value}}" *ngFor="let rs of form.form.region.choices ">{{rs.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{err.region.errors}}</div>
+        </div>
+
+        <div class="input select-alertless">
+            <div class="placeholder">{{ form.form.area.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form.form.area.value" (ionChange)="festSelected('area')">
+                    <ion-option value="{{area.value}}" *ngFor="let area of form.form.area.choices ">{{area.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+        </div>
+
+        <div class="input select-alertless">
+            <div [ngClass]="{'yellow-bg':  err.zipCode.errors  && err.zipCode.errors != 0 }" class="placeholder">{{
+                form.form.zipCode.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form.form.zipCode.value">
+                    <ion-option value="{{zipCode.value}}" *ngFor="let zipCode of form.form.zipCode.choices ">
+                        {{zipCode.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+        </div>
+        <!--<div *ngIf="form.form.phone" class="input text" (click)="presentPrompt('Phone')">
+          <div class="placeholder">{{ form.form.phone.label }}</div>
+          <ion-item>
+            <ion-input type="text" [(ngModel)]="fo
+          </ion-item>
+          <div class="err">{{ err.phone.errors }}</div>
+        </div>-->
+        <div *ngIf="err.username.errors && err.username.errors?.length != 0" class="err">{{ form.form.username.label }}: {{ err.username.errors }}</div>
+
+        <div *ngIf="err.email.children.first.errors && err.email.children.first.errors?.length != 0" class="err">{{
+            form.form.email.first.label }}: {{ err.email.children.first.errors }}
+        </div>
+            <button ion-button type="submit" (click)="formSubmit()" color="danger" block>{{ form.form.submit }}</button>
+    </ion-list>
+
+
+    <!------------------------------ STEP TWO ---------------------------->
+
+    <ion-list *ngIf="step == 2">
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.relationshipStatus.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.relationshipStatus.value">
+                    <ion-option value="{{rs.value}}"
+                                *ngFor="let rs of form_step_two.form_step_two.relationshipStatus.choices">{{rs.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.relationshipStatus?.errors }}</div>
+        </div>
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.children.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.children.value">
+                    <ion-option value="{{child.value}}"
+                                *ngFor="let child of form_step_two.form_step_two.children.choices">{{child.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.children?.errors }}</div>
+        </div>
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.ethnicity.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.ethnicity.value">
+                    <ion-option value="{{ethnicity.value}}"
+                                *ngFor="let ethnicity of form_step_two.form_step_two.ethnicity.choices">
+                        {{ethnicity.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.ethnicity?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.religion.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.religion.value">
+                    <ion-option value="{{ religion.value }}"
+                                *ngFor="let religion of form_step_two.form_step_two.religion.choices">{{religion.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.religion?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err_step_two.languages.errors  && err_step_two.languages.errors != 0 }"
+                 class="placeholder">{{ form_step_two.form_step_two.languages.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.languages.value"
+                                  multiple="true">
+                    <ion-option value="{{ lang.value }}"
+                                *ngFor="let lang of form_step_two.form_step_two.languages.choices">{{lang.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.languages?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.education.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.education.value">
+                    <ion-option value="{{ educ.value }}"
+                                *ngFor="let educ of form_step_two.form_step_two.education.choices">{{educ.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.education?.errors }}</div>
+        </div>
+
+        <div class="input text">
+            <div class="placeholder">{{ form_step_two.form_step_two.occupation.label }}</div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form_step_two.form_step_two.occupation.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err_step_two.occupation?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.smoking.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.smoking.value">
+                    <ion-option value="{{ smkg.value }}"
+                                *ngFor="let smkg of form_step_two.form_step_two.smoking.choices">{{smkg.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.smoking?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.drinking.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.drinking.value">
+                    <ion-option value="{{ drkg.value }}"
+                                *ngFor="let drkg of form_step_two.form_step_two.drinking.choices">{{drkg.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.drinking?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err_step_two.purposes.errors  && err_step_two.purposes.errors != 0 }"
+                 class="placeholder">{{ form_step_two.form_step_two.purposes.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.purposes.value" multiple="true">
+                    <ion-option value="{{ here_f.value }}"
+                                *ngFor="let here_f of form_step_two.form_step_two.purposes.choices">{{here_f.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.purposes?.errors }}</div>
+        </div>
+
+        <div class="input" *ngIf="form_step_two.form_step_two.status">
+            <div [ngClass]="{'yellow-bg':  err_step_two.status.errors  && err_step_two.status.errors != 0 }" class="placeholder">{{ form_step_two.form_step_two.status.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.status.value">
+                    <ion-option value="{{ status.value }}"
+                                *ngFor="let status of form_step_two.form_step_two.status.choices">{{status.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.status?.errors }}</div>
+        </div>
+
+        <div class="input" *ngIf="form_step_two.form_step_two.netWorth">
+            <div [ngClass]="{'yellow-bg':  err_step_two.netWorth.errors  && err_step_two.netWorth.errors != 0 }" class="placeholder">{{ form_step_two.form_step_two.netWorth.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.netWorth.value">
+                    <ion-option value="{{ netWorth.value }}"
+                                *ngFor="let netWorth of form_step_two.form_step_two.netWorth.choices">{{netWorth.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.netWorth?.errors }}</div>
+        </div>
+
+
+        <div class="input" *ngIf="form_step_two.form_step_two.income">
+            <div [ngClass]="{'yellow-bg':  err_step_two.income.errors  && err_step_two.income.errors != 0 }" class="placeholder">{{ form_step_two.form_step_two.income.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.income.value">
+                    <ion-option value="{{ income.value }}"
+                                *ngFor="let income of form_step_two.form_step_two.income.choices">{{income.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.income?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err_step_two.height.errors  && err_step_two.height.errors != 0 }" class="placeholder">{{ form_step_two.form_step_two.height.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.height.value">
+                    <ion-option value="{{ hght.value }}"
+                                *ngFor="let hght of form_step_two.form_step_two.height.choices">{{hght.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.height?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.body.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.body.value">
+                    <ion-option value="{{ body_t.value }}"
+                                *ngFor="let body_t of form_step_two.form_step_two.body.choices">{{body_t.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.body?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.eyes.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.eyes.value">
+                    <ion-option value="{{ eye_c.value }}"
+                                *ngFor="let eye_c of form_step_two.form_step_two.eyes.choices">{{eye_c.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.eyes?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div class="placeholder">{{ form_step_two.form_step_two.hair.label }}</div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.hair.value">
+                    <ion-option value="{{ hair_c.value }}"
+                                *ngFor="let hair_c of form_step_two.form_step_two.hair.choices">{{hair_c.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.hair?.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err_step_two.features.errors  && err_step_two.features.errors != 0 }"
+                 class="placeholder">{{ form_step_two.form_step_two.features.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_two.form_step_two.features.value" multiple="true">
+                    <ion-option value="{{ spec_f.value }}"
+                                *ngFor="let spec_f of form_step_two.form_step_two.features.choices">{{spec_f.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_two.features?.errors }}</div>
+        </div>
+
+        <div *ngFor="let key of errKeys">
+            <div *ngIf="err_step_two[key]?.errors && err_step_two[key]?.length != 0" class="err" [innerHTML]="">
+                {{form_step_two.form_step_two[key]?.label}} : {{ err_step_two[key].errors
+                }}
+            </div>
+        </div>
+            <button ion-button type="submit" (click)="formSubmit()" color="danger" block>{{ form.form.submit }}</button>
+    </ion-list>
+
+    <!------------------------------ STEP THREE ---------------------------->
+
+    <ion-list *ngIf="step == 3">
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err_step_three.about.errors && err_step_three.about.errors?.length != 0 }"
+                 [innerHTML]="form_step_three.form_step_three.about.label" class="placeholder"></div>
+            <ion-item class="textarea">
+                <ion-textarea id="about" [(ngModel)]="form_step_three.form_step_three.about.value" rows="8">{{
+                    form_step_three.form_step_three.about.value }}
+                </ion-textarea>
+            </ion-item>
+            <div class="err">{{ err_step_three.about.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err_step_three.looking.errors && err_step_three.looking.errors?.length != 0 }"
+                 [innerHTML]="form_step_three.form_step_three.looking.label" class="placeholder"></div>
+            <ion-item class="textarea">
+                <ion-textarea id="looking" [(ngModel)]="form_step_three.form_step_three.looking.value" rows="8">{{
+                    form_step_three.form_step_three.looking.value }}
+                </ion-textarea>
+                <div class="value">{{ form_step_three.form_step_three.looking.value }}</div>
+            </ion-item>
+            <div class="err">{{ err_step_three.looking.errors }}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg': err_step_three.hobbies.errors && err_step_three.hobbies.errors?.length != 0 }"
+                 class="placeholder">{{ form_step_three.form_step_three.hobbies.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content [(ngModel)]="form_step_three.form_step_three.hobbies.value"
+                                  multiple="true">
+                    <ion-option value="{{ hob.value }}"
+                                *ngFor="let hob of form_step_three.form_step_three.hobbies.choices">{{hob.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{ err_step_three.hobbies.errors }}</div>
+        </div>
+        <div *ngFor="let key of errKeys">
+            <div *ngIf="err_step_three[key]?.errors" class="err"
+                 [innerHTML]="form_step_three.form_step_three[key]?.label">: {{ err_step_three[key].errors
+                }}
+            </div>
+        </div>
+            <button ion-button type="submit" (click)="formSubmit()" color="danger" block>{{ form.form.submit }}</button>
+    </ion-list>
+</ion-content>
+<ion-footer>
+
+    <ion-navbar class="footerMenu">
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-footer>

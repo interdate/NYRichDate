@@ -1,0 +1,12 @@
+page-inbox {
+	.message { min-height: 50px; }
+	.gray-bg { background: #ccc }
+	.counter {
+	    clear: both;
+      margin-top: 30px;
+      font-size: 16px;
+      left: auto;
+      right: 20px;
+  }
+  ion-card { position: relative; }
+}

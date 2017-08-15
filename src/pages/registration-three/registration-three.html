@@ -1,0 +1,64 @@
+<!--
+  Generated template for the RegistrationThree page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>registrationThree</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+<ion-content>
+  <div class="inner_form_top">
+    <ul>
+      <li><span class="fnumber profileSpan">1</span><span class="ftext"></span></li>
+      <li><span class="fnumber profileSpan">2</span></li>
+      <li class="active"><span class="fnumber profileSpan">3</span></li>
+      <li><span class="fnumber profileSpan">4</span></li>
+    </ul>
+    <div class="clr"></div>
+  </div>
+
+<ion-list>
+  <div class="input">
+    <div [ngClass]="{'yellow-bg':  err.about.errors && err.about.errors?.length != 0 }" class="placeholder" [innerHTML]="form.form.about.label"></div>
+    <ion-item>
+      <ion-textarea [(ngModel)]="form.form.about.value" rows="8" >{{ form.form.about.value }}</ion-textarea>
+    </ion-item>
+    <div class="err">{{ err.about.errors }}</div>
+  </div>
+
+  <div class="input">
+    <div [ngClass]="{'yellow-bg':  err.looking.errors && err.looking.errors?.length != 0 }" class="placeholder" [innerHTML]="form.form.looking.label"></div>
+    <ion-item>
+      <ion-textarea [(ngModel)]="form.form.looking.value" rows="8" >{{ form.form.looking.value }}</ion-textarea>
+      <div class="value">{{ form.form.looking.value }}</div>
+    </ion-item>
+    <div class="err">{{ err.looking.errors }}</div>
+  </div>
+
+  <div class="input">
+    <div [ngClass]="{'yellow-bg': err.hobbies.errors && err.hobbies.errors?.length != 0 }" class="placeholder">{{ form.form.hobbies.label }}</div>
+    <ion-item>
+      <select-alertless item-content [(ngModel)]="form.form.hobbies.value" multiple="true">
+        <ion-option value="{{ hob.value }}" *ngFor="let hob of form.form.hobbies.choices">{{hob.label}}</ion-option>
+      </select-alertless>
+    </ion-item>
+    <div class="err">{{ err.hobbies.errors }}</div>
+  </div>
+  <div *ngFor="let key of errKeys">
+    <div *ngIf="err[key].errors" class="err" [innerHTML]="form.form[key]?.label ">: {{ err[key].errors
+      }}
+    </div>
+  </div>
+  <button right color="danger" (click)="formSubmit(form)" full ion-button>{{form.form.submit}}
+  </button>
+
+</ion-list>
+
+</ion-content>
+

@@ -1,0 +1,230 @@
+<!--
+  Generated template for the AdvancedSearch page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>advanced-search</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-item>
+        <ion-label>{{form.form.region.label}}</ion-label>
+        <ion-select (ionChange)="selectedRegion()" [(ngModel)]="form.form.region.value">
+            <ion-option value="{{ region.value }}" *ngFor="let region of form.form.region.choices">{{region.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{form.form.area.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.area.value">
+            <ion-option value="{{ area.value }}" *ngFor="let area of form.form.area.choices">{{area.label}}</ion-option>
+        </ion-select>
+    </ion-item>
+    <!--<div class="or">OR</div>
+    <ion-item>
+      <ion-label>Miles from my Zip Code:</ion-label>
+      <ion-select>
+        <ion-option *ngFor="let zip_code of zip_codes" >{{zip_code.num}}</ion-option>
+      </ion-select>
+    </ion-item>-->
+<!--    <ion-item class="border-top">
+        <ion-label class="age-label" item-left>{{ form.form.ageFrom.label0 }}</ion-label>
+        <ion-badge color="danger" item-left>{{ ageLower }}</ion-badge>
+        <ion-badge color="danger" item-right>{{ ageUpper }}</ion-badge>
+        <ion-range [(ngModel)]="default_range" (ionChange)="getAgeValues($event)" dualKnobs="true" pin="true" min="18"
+                   max="75" color="danger">
+            <ion-label range-left>{{ form.form.ageFrom.label }}</ion-label>
+            <ion-label range-right>{{ form.form.ageTo.label }}</ion-label>
+        </ion-range>
+    </ion-item>-->
+    <ion-item class="border-top">
+        <ion-label>Age From</ion-label>
+        <select-alertless item-content name="area" [(ngModel)]="form?.form?.ageFrom.value">
+            <ion-option value="{{ageFrom.num}}" *ngFor="let ageFrom of ages">{{ageFrom.num}}
+            </ion-option>
+        </select-alertless>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>Age To</ion-label>
+        <select-alertless item-content name="area" [(ngModel)]="form?.form?.ageTo.value">
+            <ion-option value="{{ageTo.num}}" *ngFor="let ageTo of ages">{{ageTo.num}}
+            </ion-option>
+        </select-alertless>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.zodiac.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.zodiac.value">
+            <ion-option value="{{ zodiac.value }}" *ngFor="let zodiac of form.form.zodiac.choices">{{zodiac.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.purposes.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.purposes.value">
+            <ion-option value="{{ here_f.value }}" *ngFor="let here_f of form.form.purposes.choices">{{here_f.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.status.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.status.value">
+            <ion-option value="{{ material_status.value }}" *ngFor="let material_status of form.form.status.choices">
+                {{material_status.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.languages.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.languages.value">
+            <ion-option value="{{ language.value }}" *ngFor="let language of form.form.languages.choices">
+                {{language.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.children.label}}</ion-label>
+        <ion-select [(ngModel)]="form.form.children.value">
+            <ion-option value="{{ child.value }}" *ngFor="let child of form.form.children.choices">{{child.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{ form.form.relationshipStatus.label }}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.relationshipStatus.value">
+            <ion-option value="{{ status.value }}" *ngFor="let status of form.form.relationshipStatus.choices">
+                {{status.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.netWorth.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.netWorth.value">
+            <ion-option value="{{ net_w.value }}" *ngFor="let net_w of form.form.netWorth.choices">{{net_w.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.income.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.income.value">
+            <ion-option value="{{ income.value }}" *ngFor="let income of form.form.income.choices">{{income.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.heightFrom.label}}</ion-label>
+        <select-alertless item-content [(ngModel)]="form.form.heightFrom.value">
+            <ion-option value="{{ hght.value }}" *ngFor="let hght of form.form.heightFrom.choices">{{hght.label}}
+            </ion-option>
+        </select-alertless>
+    </ion-item>
+    <ion-item>
+        <ion-label>{{form.form.heightTo.label}}</ion-label>
+        <select-alertless item-content [(ngModel)]="form.form.heightTo.value">
+            <ion-option value="{{ hght.value }}" *ngFor="let hght of form.form.heightTo.choices">{{hght.label}}
+            </ion-option>
+        </select-alertless>
+    </ion-item>
+    <ion-item class="border-top">
+        <ion-label>{{form.form.body.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.body.value">
+            <ion-option value="{{ body_t.value }}" *ngFor="let body_t of form.form.body.choices">{{body_t.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.eyes.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.eyes.value">
+            <ion-option value="{{ eye_c.value }}" *ngFor="let eye_c of form.form.eyes.choices">{{eye_c.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.hair.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.hair.value">
+            <ion-option value="{{ hair_c.value }}" *ngFor="let hair_c of form.form.hair.choices">{{hair_c.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.features.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.features.value">
+            <ion-option value="{{ spec_f.value }}" *ngFor="let spec_f of form.form.features.choices">{{spec_f.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.smoking.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.smoking.value">
+            <ion-option value="{{ smkg.value }}" *ngFor="let smkg of form.form.smoking.choices">{{smkg.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.drinking.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.drinking.value">
+            <ion-option value="{{ drkg.value }}" *ngFor="let drkg of form.form.drinking.choices">{{drkg.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.ethnicity.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.ethnicity.value">
+            <ion-option value="{{ ethnicity.value }}" *ngFor="let ethnicity of form.form.ethnicity.choices">
+                {{ethnicity.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.religion.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.religion.value">
+            <ion-option value="{{ religion.value }}" *ngFor="let religion of form.form.religion.choices">
+                {{religion.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item class="border-top">
+        <ion-label>{{form.form.education.label}}</ion-label>
+        <ion-select multiple="true" [(ngModel)]="form.form.education.value">
+            <ion-option value="{{ educ.value }}" *ngFor="let educ of form.form.education.choices">{{educ.label}}
+            </ion-option>
+        </ion-select>
+    </ion-item>
+
+    <ion-item>
+        <ion-label>{{ form.form.distance.label }} ({{form.form.distance.description}})</ion-label>
+        <select-alertless item-content name="area" [(ngModel)]="form.form.distance.value">
+            <ion-option value="{{distance.value}}" *ngFor="let distance of form.form.distance.choices" >{{distance.label}}</ion-option>
+        </select-alertless>
+    </ion-item>
+
+    <ion-item>
+        <ion-label item-left>{{ form.form.withPhoto.label }}</ion-label>
+        <ion-checkbox color="danger" item-right [(ngModel)]="form.form.withPhoto.value"></ion-checkbox>
+    </ion-item>
+
+        <button full color="danger" (click)=toSearchResultsPage() ion-button>{{ form.form.submit }}</button>
+
+
+</ion-content>
+<ion-footer>
+
+    <ion-navbar>
+        <ion-title></ion-title>
+    </ion-navbar>
+
+</ion-footer>

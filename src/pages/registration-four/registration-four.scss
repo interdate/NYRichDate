@@ -1,0 +1,127 @@
+page-registration-four {
+  .clr{
+    clear: both;width: 100%;height: 1px;
+  }
+  .photo {
+    width: calc(33.333% - 15px);
+    box-sizing: border-box;
+    border-radius: 2px;
+    float: left;
+    height: 100px;
+    margin: 5px;
+  }
+
+  .photo-img {
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  .wrap {
+    background-color: #fff;
+    position: relative;
+    height: calc(100% - 20px);
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    padding: 3px;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  }
+
+  .main {
+    width: calc(66.666% - 20px);
+    height: 210px;
+   }
+
+  .remove, .add {
+    position: absolute;
+    height: 20px;
+    width: 20px;
+    right: -6px;
+    bottom: -2px;
+    color: red;
+    background: white;
+    font-size: 14px;
+    line-height: 20px;
+    border-radius: 10px;
+    z-index: 9999;
+    text-align: center;
+    font-weight: bold;
+  }
+
+  .add {
+    color: white;
+    background: red;
+  }
+
+  .description ul {
+    margin-top: 0;
+    -webkit-padding-start: 20px;
+    list-style-type: disc;
+  }
+
+  .description {
+    margin-bottom: 10px;
+  }
+
+  .clr {margin: 20px 0}
+
+  .inner_form_top {
+    padding: 10px 10px 21px 11%;
+    border-bottom: 3px solid #fffefe;
+  }
+
+  .inner_form_top ul {
+    display: block;
+    overflow: hidden;
+  }
+
+  .inner_form_top ul li {
+    background: url(../img/innerformarrow.png) no-repeat right top;
+    float: left;
+    margin: 0 10px 0 0;
+    padding: 0 28px 0 0;
+  }
+
+  .input.text ion-icon {
+    position: absolute;
+    z-index: 9;
+    top: 45px;
+    right: 0;
+  }
+
+  .inner_form_top ul li.active .fnumber {
+    background: #e20020;
+    margin: 0 auto;
+  }
+
+  .inner_form_top ul li .fnumber {
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 20px;
+    color: #ffffff;
+    background: #a3a39a;
+    -webkit-border-radius: 50%;
+    font-weight: bold;
+    display: block;
+    text-align: center;
+  }
+
+  @media (max-width: 320px) {
+
+    .inner_form_top ul li {
+      margin-right: 5px;
+    }
+
+    .inner_form_top ul li .fnumber {
+      font-size: 18px;
+      width: 25px;
+      height: 25px;
+      line-height: 25px;
+    }
+  }
+}

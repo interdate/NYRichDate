@@ -1,0 +1,190 @@
+<!--
+  Generated template for the EditProfile page.
+
+  See http://ionicframework.com/docs/v2/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+    <ion-navbar>
+        <ion-title>edit-profile</ion-title>
+    </ion-navbar>
+    <!--<ion-title><button></button><ion-icon name="arrow-round-back"></ion-icon></button></ion-title>-->
+</ion-header>
+
+<!--<button ion-button icon-only color="danger">
+    <ion-icon name="arrow-round-back"></ion-icon>
+</button>-->
+
+<ion-content>
+    <div class="inner_form_top">
+        <ul>
+            <li class="active"><span class="fnumber profileSpan">1</span><span class="ftext"></span></li>
+            <li><span class="fnumber profileSpan">2</span></li>
+            <li><span class="fnumber profileSpan">3</span></li>
+            <li><span class="fnumber profileSpan">4</span></li>
+        </ul>
+        <div class="clr"></div>
+    </div>
+    <ion-list>
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.username.errors && err.username.errors?.length != 0 }"
+                 class="placeholder">{{ form.form.username.label }}
+            </div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form.form.username.value">
+                </ion-input>
+            </ion-item>
+            <div class="err">{{ err.username.errors }}</div>
+        </div>
+
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.password.children.first.errors && err.password.children.first.errors?.length != 0 }"
+                 class="placeholder">{{ form.form.password.first.label }}
+            </div>
+            <ion-item>
+                <ion-input type="password" [(ngModel)]="form.form.password.first.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err.password.children.first.errors }}</div>
+        </div>
+
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.password.children.first.errors && err.password.children.first.errors?.length != 0 }"
+                 class="placeholder">{{ form.form.password.second.label }}
+            </div>
+            <ion-item>
+                <ion-input type="password" [(ngModel)]="form.form.password.second.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err.password.children.second.errors }}</div>
+        </div>
+
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.email.children.first.errors  && err.email.children.first.errors?.length != 0 }"
+                 class="placeholder">{{ form.form.email.first.label }}
+            </div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form.form.email.first.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err.email.children.first.errors }}</div>
+        </div>
+
+
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.email.children.first.errors  && err.email.children.first.errors != 0 }"
+                 class="placeholder">{{ form.form.email.second.label }}
+            </div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form.form.email.second.value"></ion-input>
+            </ion-item>
+            <div class="err">{{err.email.children.second.errors}}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err.gender.errors  && err.gender.errors != 0 }" class="placeholder">{{
+                form.form.gender.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content interface="action-sheet" [(ngModel)]="form.form.gender.value"
+                                  (ionChange)="selectedGender()">
+                    <ion-option value="{{gender.value}}" *ngFor="let gender of form.form.gender.choices ">
+                        {{gender.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{err.gender.errors}}</div>
+        </div>
+
+        <div class="input text">
+            <div [ngClass]="{'yellow-bg':  err.birthday.errors  && err.birthday.errors != 0 }" class="placeholder">{{
+                form.form.birthday.label }}
+            </div>
+            <ion-item>
+                <ion-datetime [(ngModel)]="birth" displayFormat="MMM DD YYYY" max="1999"
+                              pickerFormat="MM DD YYYY"></ion-datetime>
+            </ion-item>
+            <div class="err">{{err.birthday.errors}}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err.zipCode.errors  && err.zipCode.errors != 0 }" class="placeholder">{{
+                form.form.region.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content interface="action-sheet" [(ngModel)]="form.form.region.value"
+                                  (ionChange)="festSelected('region')">
+                    <ion-option value="{{rs.value}}" *ngFor="let rs of form.form.region.choices ">{{rs.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{err.region.errors}}</div>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err.zipCode.errors  && err.zipCode.errors != 0 }" class="placeholder">{{
+                form.form.area.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content interface="action-sheet" [(ngModel)]="form.form.area.value"
+                                  (ionChange)="festSelected('area')">
+                    <ion-option value="{{area.value}}" *ngFor="let area of form.form.area.choices ">{{area.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+        </div>
+
+        <div class="input">
+            <div [ngClass]="{'yellow-bg':  err.zipCode.errors  && err.zipCode.errors != 0 }" class="placeholder">{{
+                form.form.zipCode.label }}
+            </div>
+            <ion-item>
+                <select-alertless item-content interface="action-sheet" [(ngModel)]="form.form.zipCode.value">
+                    <ion-option value="{{zipCode.value}}" *ngFor="let zipCode of form.form.zipCode.choices ">
+                        {{zipCode.label}}
+                    </ion-option>
+                </select-alertless>
+            </ion-item>
+            <div class="err">{{err.zipCode.errors}}</div>
+        </div>
+
+        <div *ngIf="form.form.gender.value == 2" class="input" >
+            <div [ngClass]="{'yellow-bg':  err.phone.errors  && err.phone.errors != 0 }" class="placeholder">{{
+                form.form.phone.label }}
+            </div>
+            <ion-item>
+                <ion-input type="text" [(ngModel)]="form.form.phone.value"></ion-input>
+            </ion-item>
+            <div class="err">{{ err.phone.errors }}</div>
+        </div>
+
+        <div [ngClass]="{'yellow-border':  err.agree.errors  && err.agree.errors != 0 }">
+            <div [innerHTML]="" class="value agree">{{ form.form.agree.text1 }} <a
+                    (click)="getPage(form.form.agree.text2 )">{{ form.form.agree.text3 }}</a> {{ form.form.agree.text4
+                }}
+            </div>
+            <div class="input agree">
+                <ion-item>
+                    <ion-checkbox checked="true" color="danger" [(ngModel)]="form.form.agree.value"></ion-checkbox>
+                </ion-item>
+            </div>
+            <div class="err">{{ err.agree.errors }}</div>
+        </div>
+
+        <div *ngFor="let key of errKeys">
+            <div *ngIf="key != 'agree' && err[key].errors" class="err">{{ form.form[key]?.label }}: {{ err[key].errors
+                }}
+            </div>
+        </div>
+        <div *ngIf="err.password.children.first.errors && err.password.children.first.errors?.length != 0" class="err">
+            {{ form.form.password.first.label }}: {{ err.password.children.first.errors }}
+        </div>
+        <div *ngIf="err.email.children.first.errors  && err.email.children.first.errors?.length != 0" class="err">{{
+            form.form.email.first.label }}: {{ err.email.children.first.errors }}
+        </div>
+
+            <button right color="danger" (click)="formSubmit(form)" full ion-button>{{form.form.submit}}
+            </button>
+
+    </ion-list>
+
+</ion-content>
+
