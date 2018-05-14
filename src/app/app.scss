@@ -17,6 +17,15 @@
   box-shadow: none;
 }
 
+ion-alert.new-version .alert-head {
+  padding: 24px 14px 20px 14px
+}
+
+ion-alert.new-version .alert-title {
+  font-size: 16px;
+  text-align: center;
+}
+
 .list-ios > .item-block:first-child {
   border-top: 0;
 }
@@ -258,10 +267,11 @@ textarea.text-input-ios, textarea.text-input-md {
   background-size: contain;
 }
 
+
 #notifications {
   background: url(../img/icons/notifications_ft.png) center no-repeat;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   background-size: contain;
 }
 

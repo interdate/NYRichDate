@@ -1,5 +1,14 @@
 import {Component, ViewChild} from '@angular/core';
-import {Platform, MenuController, Nav, ViewController, ToastController, Content, AlertController, Events} from 'ionic-angular';
+import {
+    Platform,
+    MenuController,
+    Nav,
+    ViewController,
+    ToastController,
+    Content,
+    AlertController,
+    Events
+} from 'ionic-angular';
 import {StatusBar, Push, Splashscreen, AppVersion, Geolocation, Market} from 'ionic-native';
 import {Http} from '@angular/http';
 import {HelloIonicPage} from '../pages/hello-ionic/hello-ionic';
@@ -110,6 +119,7 @@ export class MyApp {
         }, 10000);
 
         this.initializeApp();
+        this.getAppVersion();
         this.menu1Active();
 
     }
@@ -127,8 +137,11 @@ export class MyApp {
             var params = JSON.stringify({
                 latitude: pos.coords.latitude,
                 longitude: pos.coords.longitude
-            },err => {});
-            this.http.post(this.api.url + '/api/v1/locations', params, this.api.setHeaders(true)).subscribe(data => {},err => {});
+            }, err => {
+            });
+            this.http.post(this.api.url + '/api/v1/locations', params, this.api.setHeaders(true)).subscribe(data => {
+            }, err => {
+            });
         });
     }
 
@@ -379,12 +392,12 @@ export class MyApp {
             // Here you can do any higher level native things you might need
             StatusBar.styleDefault();
             Splashscreen.hide();
+            console.log('initializeApp');
         });
     }
 
 
     initPushNotification() {
-        //alert(123);
         if (!this.platform.is('cordova')) {
             console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
             return;
@@ -606,12 +619,51 @@ export class MyApp {
 
     getAppVersion() {
         this.http.get(this.api.url + '/open_api/version', this.api.header).subscribe(data => {
+
+            let prompt = this.alertCtrl.create({
+                title: 'You Have a New Version Available',
+                message: "Visit Play Store and update now!",
+                cssClass: 'new-version',
+                buttons: [
+                    {
+                        text: 'Later',
+                        handler: data => {
+                            console.log('Cancel clicked');
+                        }
+                    },
+                    {
+                        text: 'Update',
+                        handler: data => {
+                            window.open('market://details?id=com.nyrd', '_system');
+                        }
+                    }
+                ]
+            });
+            prompt.present();
+
             if (this.platform.is('cordova')) {
                 AppVersion.getVersionNumber().then((s) => {
                     if (data.json() != s) {
-                        window.open('market://details?id=com.nyrd', '_system');
-                    } else {
-                        //alert('test2');
+                        let prompt = this.alertCtrl.create({
+                            title: 'You Have a New Version Available',
+                            message: "Visit Play Store and update now!",
+                            cssClass: 'new-version',
+                            buttons: [
+                                {
+                                    text: 'Later',
+                                    handler: data => {
+                                        console.log('Cancel clicked');
+                                    }
+                                },
+                                {
+                                    text: 'Update',
+                                    handler: data => {
+                                        window.open('market://details?id=com.nyrd', '_system');
+                                    }
+                                }
+                            ]
+                        });
+                        prompt.present();
                     }
                 })
             }
@@ -628,7 +680,6 @@ export class MyApp {
         this.nav.viewDidEnter.subscribe((view) => {
 
             //this.alert('title','test');
-            this.getAppVersion();
 
             this.events.subscribe('statistics:updated', () => {
                 // user and time are the same arguments passed in `events.publish(user, time)`
@@ -643,7 +694,7 @@ export class MyApp {
             }
 
             if (page.instance instanceof HelloIonicPage) {
-                if(this.api.status != ''){
+                if (this.api.status != '') {
                     this.status = this.api.status;
                 }
                 this.setLocation();
@@ -658,7 +709,7 @@ export class MyApp {
 
                 if (page.instance instanceof DialogPage) {
                     $('.scroll-content, .fixed-content').css({'margin-bottom': '60px'});
-                }else {
+                } else {
                     $('.scroll-content, .fixed-content').css({'margin-bottom': '0px'});
                 }
             });
@@ -666,17 +717,17 @@ export class MyApp {
             window.addEventListener('native.keyboardhide', function () {
                 $('.footerMenu').show();
 
-                    el.storage.get('user_id').then((user_id) => {
-                        if (user_id) {
-                            setTimeout(function () {
-                                $('.scroll-content, .fixed-content').css({'margin-bottom': '57px'});
-                            }, 500);
-                        } else {
-                            setTimeout(function () {
-                                $('.scroll-content, .fixed-content').css({'margin-bottom': '0px'});
-                            }, 500);
-                        }
-                    });
+                el.storage.get('user_id').then((user_id) => {
+                    if (user_id) {
+                        setTimeout(function () {
+                            $('.scroll-content, .fixed-content').css({'margin-bottom': '57px'});
+                        }, 500);
+                    } else {
+                        setTimeout(function () {
+                            $('.scroll-content, .fixed-content').css({'margin-bottom': '0px'});
+                        }, 500);
+                    }
+                });
 
             });
 

@@ -47,7 +47,6 @@ export class ApiQuery {
 
     safeHtml(html) {
         return this.sanitizer.bypassSecurityTrustHtml(html);
-        //return this.sanitizer.bypassSecurityTrustScript(html);
     }
 
     sendPhoneId(idPhone) {
@@ -69,16 +68,7 @@ export class ApiQuery {
     }
 
     getStorageData(data) {
-        /*
-         this.storage.get(data).then((res) => {
-         console.log(this.storageRes);
-         this.storageRes = res;
-         });
-         setTimeout(function(){
-         console.log(this.storageRes);
-         return this.storageRes;
-         },2000);
-         */
+
     }
 
     showLoad(txt = 'Please wait...') {

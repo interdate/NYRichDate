@@ -33,7 +33,7 @@ export class HelloIonicPage {
     form_filter: any;
     filter: any = {filter: '', visible: ''};
     //url: any;
-    users: Array<{ id: string, isOnline: string, isAddBlackListed: string, username: string, photo: string, age: string, region_name: string, image: string, about: {}, component: any}>;
+    users: Array<{ id: string, distance: any, isOnline: string, isAddBlackListed: string, username: string, photo: string, age: string, region_name: string, image: string, about: {}, component: any}>;
     texts: { like: string, add: string, message: string, remove: string, unblock: string, no_results: string };
     params: { action: any, page: any, list: any } = {action: 'new', page: 1, list: ''};
     params_str: any;

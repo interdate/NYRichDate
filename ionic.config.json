@@ -1,0 +1,12 @@
+{
+  "name": "NY RichDate",
+  "app_id": "",
+  "v2": true,
+  "typescript": true,
+  "proxies": [
+    {
+      "path": "/",
+      "proxyUrl": "https://www.nyrichdate.com"
+    }
+  ]
+}

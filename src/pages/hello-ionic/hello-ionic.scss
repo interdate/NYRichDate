@@ -98,6 +98,15 @@ page-hello-ionic {
     float: left;
   }
 
+  @media (max-width: 1180px) {
+    .card-md {
+      width: calc(51.9% - 20px);
+    }
+    .card-ios {
+      width: calc(51.9% - 23.6px);
+    }
+  }
+
   @media (max-width: 414px) {
     .card-ios {
       width: calc(55% - 20.6px);
@@ -108,12 +117,12 @@ page-hello-ionic {
   }
 
   @media (max-width: 375px) {
-      .card-ios {
-        width: calc(56% - 21.6px);
-      }
-      .sorting .open {
-        right: calc(50% - 8px);
-      }
+    .card-ios {
+      width: calc(56% - 21.6px);
+    }
+    .sorting .open {
+      right: calc(50% - 8px);
+    }
   }
 
   @media (max-width: 320px) {
@@ -125,7 +134,7 @@ page-hello-ionic {
     }
   }
 
-  }
+}
 
 .platform-ios page-hello-ionic .sorting {
   top: 70px;
